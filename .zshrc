@@ -12,11 +12,18 @@ source $ZSH/oh-my-zsh.sh
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Go
 PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+export PATH=$PATH:$(go env GOPATH)/bin
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# pyenv
+eval "$(pyenv init -)"
+export WORKON_HOME=$HOME/.virtualenvs
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+# nvm
+source /usr/share/nvm/init-nvm.sh
+
+# Aliases
+alias gs="git status"
+alias nv="nvim"
