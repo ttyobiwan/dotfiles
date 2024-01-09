@@ -26,4 +26,8 @@ source /usr/share/nvm/init-nvm.sh
 
 # Aliases
 alias gs="git status"
+alias ga="git add ."
+alias gc="git commit -m"
+alias gp="git push"
+alias va="source venv/bin/activate"
 alias nv="nvim"

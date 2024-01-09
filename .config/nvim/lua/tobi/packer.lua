@@ -17,7 +17,6 @@ return require('packer').startup(function(use)
 		'rose-pine/neovim',
 		as = 'rose-pine'	
 	})
-	use { "rebelot/kanagawa.nvim" }
 
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -106,5 +105,12 @@ return require('packer').startup(function(use)
 
 	use {
 		"github/copilot.vim"
+	}
+
+	use {
+		'goolord/alpha-nvim',
+		config = function ()
+			require'alpha'.setup(require'alpha.themes.dashboard'.config)
+		end
 	}
 end)

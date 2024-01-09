@@ -5,7 +5,9 @@ lsp.preset("recommended")
 lsp.ensure_installed({
 	'pyright',
 	'ruff_lsp',
-	'gopls'
+	'gopls',
+	'templ',
+	'html',
 })
 
 local cmp = require('cmp')
@@ -42,6 +44,7 @@ end)
 
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 lspconfig.ruff_lsp.setup{}
 
@@ -51,7 +54,7 @@ lspconfig.pyright.setup{
 
 lspconfig.gopls.setup{
 	cms = {"gopls"},
-	filetypes = {"go", "gomod", "gowork", "gotmpl"},
+	filetypes = {"go", "gomod", "gowork"},
 	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 	settings = {
 		gopls = {
@@ -65,7 +68,17 @@ lspconfig.gopls.setup{
 	}
 }
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+lspconfig.html.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "templ" },
+})
+
+vim.filetype.add({
+    extension = {
+        templ = "templ",
+    },
+})
 
 lsp.setup()
-
