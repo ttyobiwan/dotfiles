@@ -3,9 +3,12 @@ return {
 	run = ':TSUpdate',
 	config = function()
 		require'nvim-treesitter.configs'.setup {
-			ensure_installed = { "lua", "go", "python", "templ" },
+			ensure_installed = { "lua", "go", "python", "templ", "html", "typescript", "javascript", "svelte" },
 			sync_install = false,
 			auto_install = true,
+			indent = {
+				enable = true
+			},
 			highlight = {
 				enable = true,
 

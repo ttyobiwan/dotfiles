@@ -9,6 +9,9 @@ return {
 	{'hrsh7th/cmp-nvim-lsp'}, -- Required
 	{'L3MON4D3/LuaSnip'},     -- Required
 
+	-- UI
+	{"SmiteshP/nvim-navic"},
+
 	{
 
 		'VonHeikemen/lsp-zero.nvim',
@@ -22,9 +25,12 @@ return {
 
 			lsp.ensure_installed({
 				'ruff_lsp',
+				'pyright',
 				'gopls',
 				'templ',
-				'html'
+				'html',
+				'tsserver',
+				'svelte',
 			})
 
 			-- Autoformatting
@@ -56,10 +62,15 @@ return {
 			local util = require("lspconfig/util")
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+			local navic = require("nvim-navic")
+
 			lspconfig.ruff_lsp.setup{}
 
 			lspconfig.pyright.setup{
-				filetypes = {"python"}
+				filetypes = {"python"},
+				on_attach = function(client, bufnr)
+					navic.attach(client, bufnr)
+				end
 			}
 
 			lspconfig.gopls.setup{
@@ -75,7 +86,10 @@ return {
 						staticcheck = true,
 						gofumpt = true,
 					}
-				}
+				},
+				on_attach = function(client, bufnr)
+					navic.attach(client, bufnr)
+				end
 			}
 
 
@@ -84,6 +98,10 @@ return {
 				capabilities = capabilities,
 				filetypes = { "html", "templ" },
 			})
+
+			lspconfig.tsserver.setup{}
+
+			lspconfig.svelte.setup{}
 
 			-- Templ support
 			vim.filetype.add({

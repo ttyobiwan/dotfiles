@@ -27,7 +27,16 @@ source /usr/share/nvm/init-nvm.sh
 # Aliases
 alias gs="git status"
 alias ga="git add ."
-alias gc="git commit -m"
-alias gp="git push"
+alias gc="git commit"
+alias gph="git push"
+alias gpl="git pull"
+alias ds="sudo systemctl start docker"
 alias va="source venv/bin/activate"
 alias nv="nvim"
+
+# bun completions
+[ -s "/home/piotr/.bun/_bun" ] && source "/home/piotr/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
