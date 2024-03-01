@@ -15,6 +15,9 @@ vim.api.nvim_set_option('clipboard', 'unnamedplus')
 
 vim.wo.relativenumber = true
 
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
 vim.g.mapleader = " "
 
 vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true, silent = true })
