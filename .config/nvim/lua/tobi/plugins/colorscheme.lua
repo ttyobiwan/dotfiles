@@ -4,14 +4,17 @@ return {
 		name = 'rose-pine',
 		config = function()
 			require('rose-pine').setup({
-				variant = "moon", 
+				variant = "main", 
 				styles = {
 					bold = false,
 					italic = false,
-					transparency = true,
+					transparency = false,
+				},
+				highlight_groups = {
+					-- Comment = { fg = "#b7d0ae" }, -- lotusGreen3 from kanagawa
 				},
 			})
-			-- vim.cmd.colorscheme("rose-pine")
+			vim.cmd.colorscheme("rose-pine")
 		end
 	},
 	{
@@ -20,32 +23,41 @@ return {
 			require('kanagawa').setup({
 				compile = false,             -- enable compiling the colorscheme
 				undercurl = true,            -- enable undercurls
-				commentStyle = { italic = true },
+				commentStyle = { italic = false },
 				functionStyle = {},
-				keywordStyle = { italic = true},
-				statementStyle = { bold = true },
+				keywordStyle = { italic = false },
+				statementStyle = { bold = false },
 				typeStyle = {},
 				transparent = false,         -- do not set background color
 				dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
 				terminalColors = true,       -- define vim.g.terminal_color_{0,17}
 				colors = {                   -- add/modify theme and palette colors
-					palette = {},
 					theme = { wave = {}, lotus = {}, dragon = {}, all = {
 						ui = {
 							bg_gutter = "none"
 						}
 					} },
 				},
-				overrides = function(colors) -- add/modify highlights
-					return {}
+				overrides = function(colors)
+					return {
+						Boolean = { bold = false },
+						Comment = { fg = colors.palette.lotusGreen },
+					}
 				end,
 				theme = "wave",              -- Load "wave" theme when 'background' option is not set
-				background = {               -- map the value of 'background' option to a theme
-					dark = "wave",           -- try "dragon" !
-					light = "lotus"
-				},
 			})
-			vim.cmd.colorscheme "kanagawa"
+			-- vim.cmd.colorscheme "kanagawa"
 		end 
+	},
+	{
+		'Mofiqul/vscode.nvim',
+		config = function()
+			require('vscode').setup({
+				transparent = false,
+				italic_comments = true,
+				underline_links = true,
+			})
+			-- vim.cmd.colorscheme "vscode"
+		end
 	},
 }

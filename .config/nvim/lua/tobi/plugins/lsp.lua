@@ -13,7 +13,6 @@ return {
 	{"SmiteshP/nvim-navic"},
 
 	{
-
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
 		requires = {

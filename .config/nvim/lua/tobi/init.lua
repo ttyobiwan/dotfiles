@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 
 vim.wo.relativenumber = true
+vim.opt.number = true
 
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
