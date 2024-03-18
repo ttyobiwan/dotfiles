@@ -4,11 +4,6 @@ return {
 	{'williamboman/mason.nvim'},           -- Optional
 	{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-	-- Autocompletion
-	{'hrsh7th/nvim-cmp'},     -- Required
-	{'hrsh7th/cmp-nvim-lsp'}, -- Required
-	{'L3MON4D3/LuaSnip'},     -- Required
-
 	-- UI
 	{"SmiteshP/nvim-navic"},
 
@@ -26,10 +21,10 @@ return {
 				'ruff_lsp',
 				'pyright',
 				'gopls',
-				'templ',
-				'html',
-				'tsserver',
-				'svelte',
+				-- 'templ',
+				-- 'html',
+				-- 'tsserver',
+				-- 'svelte',
 			})
 
 			-- Autoformatting
@@ -62,6 +57,13 @@ return {
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 			local navic = require("nvim-navic")
+
+			-- Templ support
+			vim.filetype.add({
+				extension = {
+					templ = "templ",
+				},
+			})
 
 			lspconfig.ruff_lsp.setup{}
 
@@ -101,21 +103,6 @@ return {
 			lspconfig.tsserver.setup{}
 
 			lspconfig.svelte.setup{}
-
-			-- Templ support
-			vim.filetype.add({
-				extension = {
-					templ = "templ",
-				},
-			})
-
-			-- Autocompletion
-			local cmp = require('cmp')
-			cmp.setup({
-				mapping = cmp.mapping.preset.insert({
-					['<CR>'] = cmp.mapping.confirm({ select = true })
-				}),
-			})
 
 			lsp.setup()
 		end

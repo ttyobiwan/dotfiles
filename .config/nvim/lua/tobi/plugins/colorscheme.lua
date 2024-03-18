@@ -14,7 +14,7 @@ return {
 					-- Comment = { fg = "#b7d0ae" }, -- lotusGreen3 from kanagawa
 				},
 			})
-			vim.cmd.colorscheme("rose-pine")
+			-- vim.cmd.colorscheme("rose-pine")
 		end
 	},
 	{
@@ -41,7 +41,7 @@ return {
 				overrides = function(colors)
 					return {
 						Boolean = { bold = false },
-						Comment = { fg = colors.palette.lotusGreen },
+						-- Comment = { fg = colors.palette.lotusGreen },
 					}
 				end,
 				theme = "wave",              -- Load "wave" theme when 'background' option is not set
@@ -57,7 +57,14 @@ return {
 				italic_comments = true,
 				underline_links = true,
 			})
-			-- vim.cmd.colorscheme "vscode"
+			vim.cmd.colorscheme "vscode"
 		end
 	},
+	{
+		'sam4llis/nvim-tundra',
+		config = function()
+			-- vim.g.tundra_biome = 'arctic' -- 'arctic' or 'jungle'
+			-- vim.cmd.colorscheme "tundra"
+		end
+	}
 }
