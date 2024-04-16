@@ -21,9 +21,9 @@ return {
 					t({"", "}"})
 				}),
 				s("fp", {
-					t("fmt.Println(\""),
+					t("fmt.Println("),
 					i(1),
-					t("\")")
+					t(")")
 				}),
 				s("ae", {
 					t("assert.Equal(t, "),
@@ -61,6 +61,13 @@ return {
 					t("time.Sleep(time.Second * "),
 					i(1, ""),
 					t(")")
+				}),
+
+		-- return fmt.Errorf("creating job: %w", err)
+				s("ef", {
+					t("return fmt.Errorf(\""),
+					i(1),
+					t(": %w\", err)")
 				}),
 			})
 

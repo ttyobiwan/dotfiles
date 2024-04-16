@@ -24,6 +24,9 @@ return {
 			filesystem = {
 				follow_current_file = {
 					enabled = true
+				},
+				filtered_items = {
+					show_hidden_count = false
 				}
 			}
 		})

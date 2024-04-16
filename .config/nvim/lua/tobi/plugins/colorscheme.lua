@@ -8,13 +8,13 @@ return {
 				styles = {
 					bold = false,
 					italic = false,
-					transparency = false,
+					transparency = true,
 				},
 				highlight_groups = {
 					-- Comment = { fg = "#b7d0ae" }, -- lotusGreen3 from kanagawa
 				},
 			})
-			-- vim.cmd.colorscheme("rose-pine")
+			vim.cmd.colorscheme("rose-pine")
 		end
 	},
 	{
@@ -57,7 +57,7 @@ return {
 				italic_comments = true,
 				underline_links = true,
 			})
-			vim.cmd.colorscheme "vscode"
+			-- vim.cmd.colorscheme "vscode"
 		end
 	},
 	{
@@ -65,6 +65,36 @@ return {
 		config = function()
 			-- vim.g.tundra_biome = 'arctic' -- 'arctic' or 'jungle'
 			-- vim.cmd.colorscheme "tundra"
+		end
+	},
+	{
+		"catppuccin/nvim",
+		config = function()
+			require("catppuccin").setup({
+				flavour = "mocha", -- macchiato, mocha
+				background = { -- :h background
+					light = "latte",
+					dark = "mocha",
+				},
+				transparent_background = true, -- disables setting the background color.
+				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+				no_italic = false, -- Force no italic
+				no_bold = false, -- Force no bold
+				no_underline = false, -- Force no underline
+				styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+					comments = { "italic" }, -- Change the style of comments
+					conditionals = { "italic" },
+				},
+				default_integrations = true,
+				integrations = {
+					cmp = true,
+					neotree = true,
+					treesitter = true,
+				},
+			})
+
+			-- vim.cmd.colorscheme "catppuccin"
 		end
 	}
 }
