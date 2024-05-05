@@ -12,8 +12,10 @@ source $ZSH/oh-my-zsh.sh
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export EDITOR="nvim"
+
 # Go
-PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 
 # pyenv
@@ -31,8 +33,11 @@ alias gc="git commit"
 alias gph="git push"
 alias gpl="git pull"
 alias ds="sudo systemctl start docker"
-alias va="source venv/bin/activate"
+alias va="source .venv/bin/activate"
 alias nv="nvim"
+alias gt="go test ./..."
+alias gtc="go test ./... -count=1"
+alias gtcb="go test ./... -count=1 -bench=. -benchmem"
 
 # bun completions
 [ -s "/home/piotr/.bun/_bun" ] && source "/home/piotr/.bun/_bun"
@@ -40,3 +45,7 @@ alias nv="nvim"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# rye
+source "$HOME/.rye/env"

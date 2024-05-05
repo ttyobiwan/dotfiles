@@ -14,7 +14,7 @@ return {
 					-- Comment = { fg = "#b7d0ae" }, -- lotusGreen3 from kanagawa
 				},
 			})
-			vim.cmd.colorscheme("rose-pine")
+			-- vim.cmd.colorscheme("rose-pine")
 		end
 	},
 	{
@@ -46,7 +46,7 @@ return {
 				end,
 				theme = "wave",              -- Load "wave" theme when 'background' option is not set
 			})
-			-- vim.cmd.colorscheme "kanagawa"
+			vim.cmd.colorscheme "kanagawa"
 		end 
 	},
 	{
@@ -61,22 +61,15 @@ return {
 		end
 	},
 	{
-		'sam4llis/nvim-tundra',
-		config = function()
-			-- vim.g.tundra_biome = 'arctic' -- 'arctic' or 'jungle'
-			-- vim.cmd.colorscheme "tundra"
-		end
-	},
-	{
 		"catppuccin/nvim",
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha", -- macchiato, mocha
-				background = { -- :h background
-					light = "latte",
-					dark = "mocha",
-				},
-				transparent_background = true, -- disables setting the background color.
+				flavour = "macchiato", -- macchiato, mocha
+				-- background = { -- :h background
+				-- 	light = "latte",
+				-- 	dark = "mocha",
+				-- },
+				transparent_background = false, -- disables setting the background color.
 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 				no_italic = false, -- Force no italic
@@ -96,5 +89,18 @@ return {
 
 			-- vim.cmd.colorscheme "catppuccin"
 		end
+	},
+	{
+		"sainnhe/gruvbox-material",
+		config = function()
+			vim.g.gruvbox_material_transparent_background = 0
+			vim.g.gruvbox_material_foreground = "mix"
+			vim.g.gruvbox_material_background = "hard" 
+			vim.g.gruvbox_material_ui_contrast = "high" -- The contrast of line numbers, indent lines, etc.
+			vim.g.gruvbox_material_float_style = "bright" -- Background of floating windows
+			vim.g.gruvbox_material_statusline_style = "material"
+			vim.g.gruvbox_material_cursor = "auto"
+			-- vim.cmd.colorscheme("gruvbox-material")
+		end,
 	}
 }

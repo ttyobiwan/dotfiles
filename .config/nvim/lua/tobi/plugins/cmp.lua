@@ -62,8 +62,6 @@ return {
 					i(1, ""),
 					t(")")
 				}),
-
-		-- return fmt.Errorf("creating job: %w", err)
 				s("ef", {
 					t("return fmt.Errorf(\""),
 					i(1),
