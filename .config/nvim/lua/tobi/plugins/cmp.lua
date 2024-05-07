@@ -1,10 +1,10 @@
 return {
-	{'hrsh7th/nvim-cmp'},     -- Required
-	{'hrsh7th/cmp-nvim-lsp'}, -- Required
+	{ 'hrsh7th/nvim-cmp' },  -- Required
+	{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
 	{
 		"L3MON4D3/LuaSnip",
-		dependencies = { 
-			"saadparwaiz1/cmp_luasnip" 
+		dependencies = {
+			"saadparwaiz1/cmp_luasnip"
 		},
 		config = function()
 			local cmp = require('cmp')
@@ -14,11 +14,29 @@ return {
 			local t = ls.text_node
 			local i = ls.insert_node
 
+			ls.add_snippets("python", {
+				s("fp", {
+					t("print("),
+					i(1),
+					t(")")
+				}),
+				s("li", {
+					t('logger.info("'),
+					i(1),
+					t('")')
+				}),
+				s("le", {
+					t('logger.error("'),
+					i(1),
+					t('")')
+				}),
+			})
+
 			ls.add_snippets("go", {
 				s("ifer", {
-					t({"if err != nil {", "\t"}),
+					t({ "if err != nil {", "\t" }),
 					i(1, "return err"),
-					t({"", "}"})
+					t({ "", "}" })
 				}),
 				s("fp", {
 					t("fmt.Println("),
@@ -36,7 +54,7 @@ return {
 					t("func "),
 					i(1),
 					t("(w http.ResponseWriter, r *http.Request) {"),
-					t({"\t", "}"}),
+					t({ "\t", "}" }),
 				}),
 				s("jm", {
 					t("data, err := json.Marshal("),
@@ -54,7 +72,7 @@ return {
 					t("for i := 0; i < "),
 					i(1),
 					t("; i++ {"),
-					t({"\t", ""}),
+					t({ "\t", "" }),
 					t("}")
 				}),
 				s("ts", {
@@ -89,7 +107,7 @@ return {
 					{
 						{ name = 'luasnip' },
 						{ name = 'nvim_lsp' },
-					}, 
+					},
 					{
 						{ name = 'buffer' },
 					}
@@ -98,4 +116,3 @@ return {
 		end
 	},
 }
-

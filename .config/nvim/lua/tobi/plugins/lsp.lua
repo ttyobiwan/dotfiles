@@ -24,8 +24,6 @@ return {
 				'gopls',
 				-- 'templ',
 				-- 'html',
-				-- 'tsserver',
-				-- 'svelte',
 			})
 
 			-- Autoformatting
@@ -124,6 +122,10 @@ return {
 								reportUnusedVariable = false,
 								reportUnusedFunction = false,
 								reportUnusedClass = false,
+								-- Too problematic with Django...
+								reportAttributeAccessIssue = false,
+								-- Doesn't like Celery tasks...
+								reportCallIssue = false,
 							},
 						},
 					}

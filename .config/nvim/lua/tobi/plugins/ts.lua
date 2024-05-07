@@ -1,8 +1,8 @@
-return { 
+return {
 	'nvim-treesitter/nvim-treesitter',
 	run = ':TSUpdate',
 	config = function()
-		require'nvim-treesitter.configs'.setup {
+		require 'nvim-treesitter.configs'.setup {
 			ensure_installed = { "lua", "go", "python", "templ", "html", "typescript", "javascript", "svelte" },
 			sync_install = false,
 			auto_install = true,
