@@ -85,6 +85,16 @@ return {
 					i(1),
 					t(": %w\", err)")
 				}),
+				s("li", {
+					t('slog.Info("'),
+					i(1),
+					t('")')
+				}),
+				s("le", {
+					t('slog.Error("'),
+					i(1),
+					t('")')
+				}),
 			})
 
 			cmp.setup({

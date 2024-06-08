@@ -4,7 +4,15 @@ return {
 	dependencies = { 'nvim-lua/plenary.nvim' },
 	config = function()
 		require('telescope').setup {
-			path_display = { "shorten" }
+			defaults = {
+				path_display = { "filename_first" },
+				sorting_strategy = "ascending",
+				layout_config = {
+					prompt_position = "top",
+					width = 0.75,
+					height = 0.75,
+				},
+			}
 		}
 		local builtin = require('telescope.builtin')
 
