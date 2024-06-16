@@ -4,29 +4,25 @@ return {
 		opts = {
 			options = {
 				globalstatus = true,
-				section_separators = { left = "", right = "" },
-				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "|", right = "|" },
 			},
 			sections = {
 				lualine_a = {
 					{
 						function()
-							return ""
+							return ""
 						end,
 						padding = { left = 1, right = 0 },
 						separator = "",
 					},
 					"mode",
 				},
+				lualine_c = { "filename" },
+				lualine_x = { 'filetype' },
 				lualine_y = { "progress" },
 				lualine_z = {
-					{ "location", separator = "" },
-					{
-						function()
-							return ""
-						end,
-						padding = { left = 0, right = 1 },
-					},
+					{ "location", padding = { right = 1 } }
 				}
 
 			}

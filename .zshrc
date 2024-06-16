@@ -6,7 +6,12 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+
+# zsh-syntax-highlighting
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -14,7 +19,7 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR="nvim"
 
-# Go
+# go
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$(go env GOPATH)/bin
 
@@ -26,7 +31,7 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 # nvm
 source /usr/share/nvm/init-nvm.sh
 
-# Aliases
+# aliases
 alias gs="git status"
 alias ga="git add ."
 alias gc="git commit"
@@ -39,13 +44,17 @@ alias gt="go test ./..."
 alias gtc="go test ./... -count=1"
 alias gtcb="go test ./... -count=1 -bench=. -benchmem"
 
-# bun completions
-[ -s "/home/piotr/.bun/_bun" ] && source "/home/piotr/.bun/_bun"
-
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-. "$HOME/.cargo/env"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+# . "$HOME/.cargo/env"
 
 # rye
 source "$HOME/.rye/env"
+
+# fzf
+source <(fzf --zsh)
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory

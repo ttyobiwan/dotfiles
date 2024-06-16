@@ -13,16 +13,31 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 
+-- Line numbers
 vim.wo.relativenumber = true
 vim.opt.number = true
 
+-- Indents
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+-- Folding
+vim.opt.foldlevelstart = 10
+vim.opt.foldnestmax = 5
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+-- Remaps
 vim.g.mapleader = " "
 
+-- Folding
+vim.keymap.set("n", "<leader>c", "za", { desc = "Toggle fold", remap = true })
+vim.keymap.set("n", "<leader>C", "zA", { desc = "Toggle full fold", remap = true })
+
+-- Save
 vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true, silent = true })
 
+-- Margin
 vim.keymap.set(
 	"n",
 	"<leader>zz",
@@ -37,6 +52,7 @@ vim.keymap.set(
 	{ desc = "Add left margin", remap = true }
 )
 
+-- Buffers and windows
 vim.keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer" })
 
