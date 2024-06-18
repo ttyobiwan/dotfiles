@@ -5,7 +5,13 @@ return {
 	{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
 	-- UI
-	{ "SmiteshP/nvim-navic" },
+	{
+		"SmiteshP/nvim-navbuddy",
+		dependencies = {
+			"SmiteshP/nvim-navic",
+			"MunifTanjim/nui.nvim"
+		}
+	},
 
 	{
 		'VonHeikemen/lsp-zero.nvim',
@@ -22,8 +28,6 @@ return {
 				'ruff_lsp',
 				'pyright',
 				'gopls',
-				-- 'templ',
-				-- 'html',
 			})
 
 			-- Autoformatting
@@ -46,8 +50,8 @@ return {
 				vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
 				vim.keymap.set("n", "<leader>vi", function() vim.diagnostic.open_float() end, opts)
 				vim.keymap.set("n", "<leader>va", function() vim.lsp.buf.code_action() end, opts)
-				vim.keymap.set("n", "<leader>vrf", function() vim.lsp.buf.references() end, opts)
-				vim.keymap.set("n", "<leader>rrf", function() vim.lsp.buf.rename() end, opts)
+				vim.keymap.set("n", "<leader>ref", function() vim.lsp.buf.references() end, opts)
+				vim.keymap.set("n", "<leader>ren", function() vim.lsp.buf.rename() end, opts)
 
 				lsp_format_on_save(bufnr)
 			end)
@@ -56,14 +60,7 @@ return {
 			local lspconfig = require("lspconfig")
 			local util = require("lspconfig/util")
 
-			local _ = require("nvim-navic")
-
-			-- Templ support
-			-- vim.filetype.add({
-			-- 	extension = {
-			-- 		templ = "templ",
-			-- 	},
-			-- })
+			local navbuddy = require("nvim-navbuddy")
 
 			lspconfig.lua_ls.setup {
 				on_attach = on_attach,
@@ -101,7 +98,10 @@ return {
 			}
 
 			lspconfig.pyright.setup {
-				on_attach = on_attach,
+				on_attach = function(client, bufnr)
+					navbuddy.attach(client, bufnr)
+					on_attach(client, bufnr)
+				end,
 				capabilities = capabilities,
 				filetypes = { "python" },
 				settings = {
@@ -134,7 +134,10 @@ return {
 
 
 			lspconfig.gopls.setup {
-				on_attach = on_attach,
+				on_attach = function(client, bufnr)
+					navbuddy.attach(client, bufnr)
+					on_attach(client, bufnr)
+				end,
 				capabilities = capabilities,
 				cms = { "gopls" },
 				filetypes = { "go", "gomod", "gowork" },
@@ -150,12 +153,6 @@ return {
 					}
 				},
 			}
-
-			-- lspconfig.html.setup({
-			-- 	on_attach = on_attach,
-			-- 	capabilities = capabilities,
-			-- 	filetypes = { "html", "templ" },
-			-- })
 
 			lsp.setup()
 		end

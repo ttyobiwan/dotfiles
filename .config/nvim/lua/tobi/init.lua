@@ -37,6 +37,9 @@ vim.keymap.set("n", "<leader>C", "zA", { desc = "Toggle full fold", remap = true
 -- Save
 vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true, silent = true })
 
+-- Navbuddy
+vim.keymap.set("n", "<leader>nav", ":Navbuddy<cr>", { desc = "Prev buffer" })
+
 -- Margin
 vim.keymap.set(
 	"n",
