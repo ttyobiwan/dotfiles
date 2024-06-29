@@ -1,5 +1,61 @@
 return {
 	{
+		"rebelot/kanagawa.nvim",
+		enabled = false,
+		config = function()
+			require('kanagawa').setup({
+				compile = false,
+				undercurl = true,
+				commentStyle = { italic = true },
+				functionStyle = {},
+				keywordStyle = { italic = false, bold = false },
+				statementStyle = { bold = false },
+				typeStyle = {},
+				transparent = false,
+				dimInactive = false,
+				terminalColors = true,
+				overrides = function()
+					return {
+						Boolean = { bold = false },
+					}
+				end,
+				colors = {
+					theme = {
+						all = {
+							ui = {
+								bg_gutter = "none"
+							}
+						}
+					}
+				},
+				theme = "dragon",
+				background = { -- map the value of 'background' option to a theme
+					dark = "wave", -- try "dragon" !
+					light = "lotus"
+				},
+			})
+			vim.cmd.colorscheme "kanagawa"
+		end
+	},
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		enabled = false,
+		config = function()
+			require("rose-pine").setup({
+				variant = "auto", -- auto, main, moon, or dawn
+				dim_inactive_windows = false,
+				extend_background_behind_borders = true,
+				styles = {
+					bold = false,
+					italic = false,
+					transparency = false,
+				},
+			})
+			vim.cmd.colorscheme "rose-pine"
+		end
+	},
+	{
 		"catppuccin/nvim",
 		name = "catppuccin",
 		enabled = true,
@@ -23,8 +79,16 @@ return {
 					treesitter = true,
 					telescope = {
 						enabled = true,
-						style = "nvchad",
+						-- style = "nvchad",
 					},
+				},
+				color_overrides = {
+					-- mocha = {
+					-- base = "#1a1c2a",
+					-- mantle = "#141620",
+					-- crust = "#0e0f16",
+					-- },
+
 				},
 			})
 			vim.cmd.colorscheme "catppuccin"

@@ -13,23 +13,24 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
 
+# ohmyzsh
 source $ZSH/oh-my-zsh.sh
 
+# p10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# neovim
 export EDITOR="nvim"
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # go
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
 
 # pyenv
 eval "$(pyenv init -)"
-export WORKON_HOME=$HOME/.virtualenvs
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-
-# nvm
-source /usr/share/nvm/init-nvm.sh
 
 # aliases
 alias gs="git status"
@@ -43,14 +44,7 @@ alias nv="nvim"
 alias gt="go test ./..."
 alias gtc="go test ./... -count=1"
 alias gtcb="go test ./... -count=1 -bench=. -benchmem"
-
-# bun
-# export BUN_INSTALL="$HOME/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
-# . "$HOME/.cargo/env"
-
-# rye
-source "$HOME/.rye/env"
+alias zel="zellij"
 
 # fzf
 source <(fzf --zsh)

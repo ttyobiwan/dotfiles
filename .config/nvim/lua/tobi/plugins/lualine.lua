@@ -18,14 +18,20 @@ return {
 					},
 					"mode",
 				},
-				lualine_c = { 'filename' },
+				lualine_c = { { 'filename', path = 1 } },
 				lualine_x = { 'filetype' },
 				lualine_y = { "progress" },
 				lualine_z = {
-					{ "location", padding = { right = 1 } }
+					{ "location", padding = { left = 1 }, separator = "" },
+					{
+						function()
+							return ""
+						end,
+						padding = { left = 1, right = 1 },
+					},
 				}
 
 			}
-		}
+		},
 	},
 }

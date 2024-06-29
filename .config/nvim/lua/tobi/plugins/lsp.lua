@@ -117,21 +117,20 @@ return {
 							typeCheckingMode = 'basic',
 							-- This thing fucking sux
 							-- Some changes work, some don't
-							diagnosticSeverityOverrides = {
-								reportUnusedImport = false,
-								reportUnusedVariable = false,
-								reportUnusedFunction = false,
-								reportUnusedClass = false,
-								-- Too problematic with Django...
-								reportAttributeAccessIssue = false,
-								-- Doesn't like Celery tasks...
-								reportCallIssue = false,
-							},
+							-- diagnosticSeverityOverrides = {
+							-- 	reportUnusedImport = false,
+							-- 	reportUnusedVariable = false,
+							-- 	reportUnusedFunction = false,
+							-- 	reportUnusedClass = false,
+							-- 	-- Too problematic with Django...
+							-- 	reportAttributeAccessIssue = false,
+							-- 	-- Doesn't like Celery tasks...
+							-- 	reportCallIssue = false,
+							-- },
 						},
 					}
 				}
 			}
-
 
 			lspconfig.gopls.setup {
 				on_attach = function(client, bufnr)

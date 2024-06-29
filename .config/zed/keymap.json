@@ -1,0 +1,31 @@
+[
+  {
+    "bindings": {
+      "ctrl-s": "workspace::Save",
+      "ctrl-h": "workspace::ActivatePreviousPane",
+      "ctrl-l": "workspace::ActivateNextPane",
+      "ctrl-shift-w": "pane::CloseActiveItem",
+      "ctrl-shift-h": "pane::ActivatePrevItem",
+      "ctrl-shift-l": "pane::ActivateNextItem",
+      "ctrl-shift-q": "project_panel::ToggleFocus",
+      "ctrl-shift-t": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space f": "file_finder::Toggle",
+      "space F": "workspace::NewSearch",
+      "space |": "pane::SplitRight",
+      "space \"": "pane::SplitDown",
+      "space q": "project_panel::ToggleFocus",
+      "space g b": "editor::ToggleGitBlameInline"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual)",
+    "bindings": {
+      "space /": "editor::ToggleComments"
+    }
+  }
+]
