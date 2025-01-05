@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.opt.laststatus = 0
+
 vim.api.nvim_set_option('clipboard', 'unnamedplus')
 
 -- Line numbers
@@ -38,7 +40,7 @@ vim.keymap.set("n", "<leader>C", "zA", { desc = "Toggle full fold", remap = true
 vim.api.nvim_set_keymap('n', '<C-S>', ':w<CR>', { noremap = true, silent = true })
 
 -- Navbuddy
-vim.keymap.set("n", "<leader>nav", ":Navbuddy<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<leader>nav", ":Navbuddy<cr>", { desc = "Open navbuddy" })
 
 -- Margin
 vim.keymap.set(
@@ -58,6 +60,10 @@ vim.keymap.set(
 -- Buffers and windows
 vim.keymap.set("n", "<S-h>", ":bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", ":bnext<cr>", { desc = "Next buffer" })
+-- Delete the current buffer
+vim.api.nvim_create_user_command('DB', function()
+	vim.api.nvim_buf_delete(0, {})
+end, {})
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", remap = true })

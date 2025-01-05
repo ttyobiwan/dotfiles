@@ -1,8 +1,8 @@
 return {
 	-- LSP Support
-	{ 'neovim/nvim-lspconfig' },          -- Required
-	{ 'williamboman/mason.nvim' },        -- Optional
-	{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
+	{ 'neovim/nvim-lspconfig' },
+	{ 'williamboman/mason.nvim' },
+	{ 'williamboman/mason-lspconfig.nvim' },
 
 	-- UI
 	{
@@ -25,9 +25,12 @@ return {
 
 			lsp.ensure_installed({
 				'lua_ls',
-				'ruff_lsp',
+				'ruff',
 				'pyright',
 				'gopls',
+				'elixirls',
+				'svelte',
+				'ts_ls'
 			})
 
 			-- Autoformatting
@@ -75,7 +78,7 @@ return {
 				},
 			}
 
-			lspconfig.ruff_lsp.setup {
+			lspconfig.ruff.setup {
 				on_attach = on_attach,
 				capabilities = capabilities,
 				filetypes = { "python" },
@@ -138,7 +141,7 @@ return {
 					on_attach(client, bufnr)
 				end,
 				capabilities = capabilities,
-				cms = { "gopls" },
+				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork" },
 				root_dir = util.root_pattern("go.work", "go.mod", ".git"),
 				settings = {
@@ -152,6 +155,32 @@ return {
 					}
 				},
 			}
+
+			lspconfig.elixirls.setup({
+				cmd = { "elixir-ls" },
+				on_attach = function(client, bufnr)
+					navbuddy.attach(client, bufnr)
+					on_attach(client, bufnr)
+				end,
+				capabilities = capabilities,
+				filetypes = { "elixir", "heex" },
+				settings = {
+					elixirLS = {
+						dialyzerEnabled = true,
+						enableHEExSupport = true,
+					}
+				}
+			})
+
+			lspconfig.svelte.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
+
+			lspconfig.ts_ls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+			})
 
 			lsp.setup()
 		end

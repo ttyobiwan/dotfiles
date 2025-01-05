@@ -3,7 +3,7 @@ return {
 	run = ':TSUpdate',
 	config = function()
 		require 'nvim-treesitter.configs'.setup {
-			ensure_installed = { "lua", "go", "python", "html" },
+			ensure_installed = { "lua", "go", "python", "html", "heex", "elixir" },
 			sync_install = false,
 			auto_install = true,
 			indent = {

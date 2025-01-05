@@ -2,13 +2,25 @@
   {
     "bindings": {
       "ctrl-s": "workspace::Save",
-      "ctrl-h": "workspace::ActivatePreviousPane",
-      "ctrl-l": "workspace::ActivateNextPane",
-      "ctrl-shift-w": "pane::CloseActiveItem",
-      "ctrl-shift-h": "pane::ActivatePrevItem",
-      "ctrl-shift-l": "pane::ActivateNextItem",
+      "ctrl-shift-s": "workspace::SaveWithoutFormat",
+      "ctrl-h": "pane::ActivatePrevItem",
+      "ctrl-l": "pane::ActivateNextItem",
+      "ctrl-w": "pane::CloseActiveItem",
+      "ctrl-t": "terminal_panel::ToggleFocus",
+      "ctrl-shift-h": "workspace::ActivatePreviousPane",
+      "ctrl-shift-l": "workspace::ActivateNextPane",
       "ctrl-shift-q": "project_panel::ToggleFocus",
-      "ctrl-shift-t": "terminal_panel::ToggleFocus"
+      "ctrl-shift-e": "project_panel::ToggleFocus",
+      "ctrl-shift-t": "workspace::ToggleBottomDock",
+      "ctrl-+": "workspace::NewTerminal",
+      "ctrl-shift-o": "projects::OpenRecent",
+      "ctrl-shift-r": "task::Rerun",
+      "ctrl-i": "assistant::ToggleFocus",
+      "ctrl-shift-i": "workspace::ToggleRightDock",
+      "ctrl-shift-w": "workspace::CloseWindow",
+      "ctrl-f": "file_finder::Toggle",
+      "ctrl-shift-f": "workspace::NewSearch",
+      "cmd-r": "zed::NoAction"
     }
   },
   {
@@ -19,13 +31,32 @@
       "space |": "pane::SplitRight",
       "space \"": "pane::SplitDown",
       "space q": "project_panel::ToggleFocus",
-      "space g b": "editor::ToggleGitBlameInline"
+      "space g b": "editor::ToggleGitBlameInline",
+      "space r e f": "editor::FindAllReferences",
+      "space r e n": "editor::Rename",
+      "space c": "editor::Fold",
+      "space C": "editor::UnfoldLines",
+      "space v a": "editor::ToggleCodeActions",
+      "/": "buffer_search::Deploy"
     }
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual)",
     "bindings": {
       "space /": "editor::ToggleComments"
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "shift-tab": "editor::ContextMenuPrev",
+      "up": "editor::ContextMenuPrev",
+      "ctrl-p": "editor::ContextMenuPrev",
+      "tab": "editor::ContextMenuNext",
+      "down": "editor::ContextMenuNext",
+      "ctrl-n": "editor::ContextMenuNext",
+      "pageup": "editor::ContextMenuFirst",
+      "pagedown": "editor::ContextMenuLast"
     }
   }
 ]

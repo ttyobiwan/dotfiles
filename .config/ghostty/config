@@ -1,0 +1,6 @@
+shell-integration = "fish"
+font-family = "TX-02"
+theme = "nord"
+font-size = 13
+window-padding-x = 5,0
+window-padding-y = 0,0

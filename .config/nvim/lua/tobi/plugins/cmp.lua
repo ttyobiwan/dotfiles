@@ -9,10 +9,12 @@ return {
 		config = function()
 			local cmp = require('cmp')
 			local ls = require('luasnip')
+			local rep = require("luasnip.extras").rep
 
 			local s = ls.snippet
 			local t = ls.text_node
 			local i = ls.insert_node
+
 
 			ls.add_snippets("python", {
 				s("fp", {
@@ -30,6 +32,31 @@ return {
 					i(1),
 					t('")')
 				}),
+			})
+
+			ls.add_snippets("elixir", {
+				s("sleep", {
+					t('Process.sleep('),
+					i(1),
+					t(')')
+				}),
+				s("fp", {
+					t('IO.inspect('),
+					i(1),
+					t(')')
+				})
+			})
+
+			ls.add_snippets("heex", {
+				s("tag", {
+					t("<"), i(1), t(">"),
+					t("</"), rep(1), t(">"),
+				}),
+				s("itag", {
+					t('<.'),
+					i(1),
+					t('/>'),
+				})
 			})
 
 			ls.add_snippets("go", {
@@ -105,14 +132,10 @@ return {
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
-					['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
+					['<S-Tab>'] = cmp.mapping.select_prev_item(),
+					['<Tab>'] = cmp.mapping.select_next_item(),
 					['<CR>'] = cmp.mapping.confirm({ select = true })
 				}),
-				window = {
-					-- completion = cmp.config.window.bordered(),
-					-- documentation = cmp.config.window.bordered(),
-				},
 				sources = cmp.config.sources(
 					{
 						{ name = 'luasnip' },
