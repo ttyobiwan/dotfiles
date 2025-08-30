@@ -1,0 +1,32 @@
+{
+	"Check error": {
+		"prefix": "ifer",
+		"body": ["if err != nil {", "return $0", "}"],
+		"description": "Check if error equals nil"
+	},
+	"Wrap error": {
+		"prefix": "ef",
+		"body": ["fmt.Errorf(\"$0: %w\", err)"],
+		"description": "Wrap error using Errorf"
+	},
+	"Log info": {
+		"prefix": "logi",
+		"body": ["slog.Info(\"$0\")"],
+		"description": "Log info using slog"
+	},
+	"Log error": {
+		"prefix": "loge",
+		"body": ["slog.Error(\"$0\", \"error\", err)"],
+		"description": "Log error using slog"
+	},
+	"Print line": {
+		"prefix": "fp",
+		"body": ["fmt.Println($0)"],
+		"description": "Print line"
+	},
+	"For loop": {
+		"prefix": "fori",
+		"body": ["for i := 0; i < $0; i ++ {", "", "}"],
+		"description": "Classic for loop"
+	}
+}

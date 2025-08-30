@@ -10,6 +10,19 @@ return {
 					width = 0.75,
 					height = 0.75,
 				},
+			},
+			pickers = {
+				buffers = {
+					show_all_buffers = true,
+					sort_lastused = true,
+					theme = "dropdown",
+					previewer = false,
+					mappings = {
+						i = {
+							["<c-d>"] = "delete_buffer",
+						}
+					}
+				}
 			}
 		}
 		local builtin = require('telescope.builtin')

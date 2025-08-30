@@ -3,14 +3,16 @@
     "bindings": {
       "ctrl-s": "workspace::Save",
       "ctrl-shift-s": "workspace::SaveWithoutFormat",
-      "ctrl-h": "pane::ActivatePreviousItem",
+      "ctrl-h": "pane::ActivatePrevItem",
       "ctrl-l": "pane::ActivateNextItem",
       "ctrl-w": "pane::CloseActiveItem",
       "ctrl-shift-h": "workspace::ActivatePreviousPane",
       "ctrl-shift-l": "workspace::ActivateNextPane",
       // Terminal
+      // "ctrl-t": "terminal_panel::ToggleFocus",
       "ctrl-shift-t": "workspace::NewTerminal",
       "ctrl-t": "workspace::ToggleBottomDock",
+      // "ctrl-shift-t": "workspace::ToggleBottomDock",
       // Project
       "ctrl-e": "project_panel::ToggleFocus",
       "ctrl-shift-e": "workspace::ToggleLeftDock",
@@ -24,6 +26,7 @@
       "ctrl-shift-r": "search::ToggleReplace",
       // Disabled
       "cmd-r": null
+      // "ctrl-i": null
     }
   },
   {
@@ -40,26 +43,21 @@
       "space c": "editor::Fold",
       "space C": "editor::UnfoldLines",
       "space v a": "editor::ToggleCodeActions",
-      "space n a v": "outline::Toggle",
-      "space s y m": "project_symbols::Toggle",
-      "space n t t": "agent::NewTextThread",
       "/": "buffer_search::Deploy"
     }
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual)",
     "bindings": {
-      "space /": "editor::ToggleComments",
-      "ctrl-shift-i": "assistant::InlineAssist",
-      "ctrl-shift-c": "assistant::QuoteSelection"
+      "space /": "editor::ToggleComments"
     }
   },
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
-      "shift-tab": "editor::ContextMenuPrevious",
-      "up": "editor::ContextMenuPrevious",
-      "ctrl-p": "editor::ContextMenuPrevious",
+      "shift-tab": "editor::ContextMenuPrev",
+      "up": "editor::ContextMenuPrev",
+      "ctrl-p": "editor::ContextMenuPrev",
       "tab": "editor::ContextMenuNext",
       "down": "editor::ContextMenuNext",
       "ctrl-n": "editor::ContextMenuNext",

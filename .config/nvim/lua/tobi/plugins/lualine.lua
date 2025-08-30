@@ -4,6 +4,8 @@ return {
 		enabled = true,
 		opts = {
 			options = {
+				-- theme = 'monokai-pro',
+				-- theme = 'nordic',
 				globalstatus = true,
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "|", right = "|" },

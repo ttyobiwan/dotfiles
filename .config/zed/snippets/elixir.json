@@ -1,0 +1,47 @@
+{
+	"IO inspect": {
+		"prefix": "fp",
+		"body": ["IO.inspect()"],
+		"description": "IO inspect"
+	},
+	"Live view render": {
+		"prefix": "rr",
+		"body": ["def render(assigns) do", "~H\"\"\"", "", "\"\"\"", "end"],
+		"description": "Live view render"
+	},
+	"Live view mount": {
+		"prefix": "mnt",
+		"body": ["def mount(_params, _session, socket) do", "{:ok, socket}", "end"],
+		"description": "Live view mount"
+	},
+	"Live view link": {
+		"prefix": "link",
+		"body": ["<.link navigate={~p\"\"}></.link>"],
+		"description": "Live view link"
+	},
+	"Live view handle params": {
+		"prefix": "hp",
+		"body": ["def handle_params(params, _, socket) do", "{:noreply, socket}", "end"],
+		"description": "Live view handle params"
+	},
+	"Live view handle event": {
+		"prefix": "he",
+		"body": ["def handle_event(\"\", params, socket) do", "{:noreply, socket}", "end"],
+		"description": "Live view handle event"
+	},
+	"Phoenix form": {
+		"prefix": "fm",
+		"body": ["<.form for={@form} id=\"form\" phx-change=\"validate\" phx-submit=\"save\">", "", "</.form>"],
+		"description": "Phoenix form"
+	},
+	"Phoenix input": {
+		"prefix": "inp",
+		"body": ["<.input field={@form[:field]} type=\"text\" label=\"Field\" />"],
+		"description": "Phoenix input"
+	},
+	"Conn test": {
+		"prefix": "ct",
+		"body": ["test \"\", %{conn: conn} do", "", "end"],
+		"description": "Test with live view conn"
+	},
+}
