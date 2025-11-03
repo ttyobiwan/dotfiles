@@ -1,7 +1,7 @@
 {
 	"IO inspect": {
 		"prefix": "fp",
-		"body": ["IO.inspect()"],
+		"body": ["IO.inspect($1)"],
 		"description": "IO inspect"
 	},
 	"Live view render": {

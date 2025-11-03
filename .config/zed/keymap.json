@@ -51,7 +51,7 @@
     "bindings": {
       "space /": "editor::ToggleComments",
       "ctrl-shift-i": "assistant::InlineAssist",
-      "ctrl-shift-c": "assistant::QuoteSelection"
+      "ctrl-shift-c": "agent::QuoteSelection"
     }
   },
   {

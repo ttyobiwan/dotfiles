@@ -11,21 +11,18 @@
     "edit_prediction_provider": "zed"
   },
   "agent": {
+    "default_profile": "ask",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     }
   },
-  "theme": "0x96f Theme",
-  // Fix catppuccin
-  // "experimental.theme_overrides": {
-  //   "syntax": { "type.class.definition": { "font_weight": 400 } }
-  // },
+  "theme": "Kanagawa",
   "icon_theme": "Material Icon Theme",
-  "ui_font_family": "Ubuntu Nerd Font",
-  "buffer_font_family": "Input",
-  "buffer_font_size": 13,
-  "ui_font_size": 15,
+  // "ui_font_family": "Ubuntu Nerd Font",
+  "buffer_font_family": "CommitMono",
+  "buffer_font_size": 15,
+  "ui_font_size": 16,
   "minimap": { "show": "never" },
   "collaboration_panel": { "button": false },
   "toolbar": {
@@ -93,7 +90,7 @@
     },
     "Elixir": {
       "show_edit_predictions": false,
-      "language_servers": ["expert", "!elixir-ls"]
+      "language_servers": ["!expert", "elixir-ls"]
     },
     "HEEX": {
       "language_servers": ["elixir-ls", "tailwindcss-language-server"]
