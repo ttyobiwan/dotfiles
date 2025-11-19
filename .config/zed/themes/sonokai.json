@@ -157,6 +157,10 @@
             "color": "#7f8490",
             "font_style": "italic"
           },
+          "comment.doc": {
+            "color": "#7f8490",
+            "font_style": "italic"
+          },
           "punctuation": {
             "color": "#7f8490"
           },
@@ -821,6 +825,10 @@
             "color": "#7f8490",
             "font_style": "italic"
           },
+          "comment.doc": {
+            "color": "#7f8490",
+            "font_style": "italic"
+          },
           "punctuation": {
             "color": "#7f8490"
           },
@@ -987,6 +995,10 @@
             "color": "#7f8490",
             "font_style": "italic"
           },
+          "comment.doc": {
+            "color": "#7f8490",
+            "font_style": "italic"
+          },
           "punctuation": {
             "color": "#7f8490"
           },
@@ -1001,3 +1013,5 @@
     }
   ]
 }
+
+

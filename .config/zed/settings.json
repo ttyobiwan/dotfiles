@@ -1,6 +1,6 @@
 {
   "edit_predictions": {
-    "mode": "subtle",
+    "mode": "eager",
     "copilot": {
       "proxy": null,
       "proxy_no_verify": null
@@ -11,18 +11,20 @@
     "edit_prediction_provider": "zed"
   },
   "agent": {
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     }
   },
-  "theme": "Kanagawa",
+  "theme": "Solarized Dark",
   "icon_theme": "Material Icon Theme",
-  // "ui_font_family": "Ubuntu Nerd Font",
-  "buffer_font_family": "CommitMono",
-  "buffer_font_size": 15,
-  "ui_font_size": 16,
+  "ui_font_family": "DejaVu Sans",
+  "buffer_font_family": "Departure Mono",
+  "buffer_line_height": "standard",
+  "buffer_font_weight": 400.0,
+  "buffer_font_size": 16,
+  "ui_font_size": 17.0,
   "minimap": { "show": "never" },
   "collaboration_panel": { "button": false },
   "toolbar": {
@@ -30,9 +32,9 @@
     "quick_actions": false,
     "selections_menu": false
   },
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "restore_on_startup": "last_workspace",
-  "show_edit_predictions": false,
+  "show_edit_predictions": true,
   "show_completions_on_input": true,
   "tabs": {
     "file_icons": false,
@@ -66,7 +68,9 @@
       "breadcrumbs": false
     },
     "detect_venv": { "on": { "activate_script": "fish" } },
-    "shell": "system"
+    "shell": {
+      "program": "fish"
+    }
   },
   "git": {
     "inline_blame": {
@@ -76,20 +80,27 @@
   "tab_bar": { "show_nav_history_buttons": false },
   "languages": {
     "Python": {
-      "language_servers": ["pyright"],
+      "language_servers": ["pyright", "ruff"],
       "format_on_save": "on",
-      "formatter": {
-        "external": {
-          "command": "bash",
-          "arguments": [
-            "-c",
-            "ruff check --select=I --fix --stdin-filename {buffer_path} | ruff format --stdin-filename {buffer_path}"
-          ]
+      "formatter": [
+        {
+          "language_server": {
+            "name": "ruff"
+          }
         }
-      }
+      ]
+      // "formatter": {
+      //   "external": {
+      //     "command": "bash",
+      //     "arguments": [
+      //       "-c",
+      //       "ruff check --select=I --fix --stdin-filename {buffer_path} | ruff format --stdin-filename {buffer_path}"
+      //     ]
+      //   }
+      // }
     },
     "Elixir": {
-      "show_edit_predictions": false,
+      "show_edit_predictions": true,
       "language_servers": ["!expert", "elixir-ls"]
     },
     "HEEX": {
