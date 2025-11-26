@@ -1,1 +1,1 @@
-require("tobi")
+require("config.lazy")
