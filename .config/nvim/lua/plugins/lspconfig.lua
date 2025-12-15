@@ -13,7 +13,7 @@ return {
 		vim.keymap.set("n", "<leader>ren", function() vim.lsp.buf.rename() end)
 
 		-- Lsp on attach
-		local navbuddy_skip = { 'ruff' }
+		local navbuddy_skip = { 'ruff', 'GitHub Copilot' }
 		local format_skip = { 'pyright' }
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)

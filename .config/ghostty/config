@@ -1,6 +1,7 @@
 shell-integration = "fish"
-font-family = "TX-02"
-theme = "nord"
-font-size = 13
-window-padding-x = 5,0
-window-padding-y = 0,0
+font-size = 17
+font-family = "Iosevka Term"
+theme = "dark:Atom One Dark,light:Atom One Light"
+window-width = 199
+window-height = 54
+macos-titlebar-style = "tabs"

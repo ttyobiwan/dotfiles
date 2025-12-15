@@ -28,6 +28,9 @@ vim.api.nvim_set_option('clipboard', 'unnamedplus')
 vim.wo.relativenumber = true
 vim.opt.number = true
 
+-- Shifting signs
+vim.opt.signcolumn = "yes"
+
 -- Indents
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4

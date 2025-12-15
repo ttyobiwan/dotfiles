@@ -14,24 +14,18 @@
     "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "model": "claude-sonnet-4-5"
     }
   },
-  "theme": "Solarized Dark",
-  "icon_theme": "Material Icon Theme",
+  "theme": "One Dark",
   "ui_font_family": "DejaVu Sans",
-  "buffer_font_family": "Departure Mono",
+  "buffer_font_family": "Berkeley Mono",
   "buffer_line_height": "standard",
   "buffer_font_weight": 400.0,
   "buffer_font_size": 16,
   "ui_font_size": 17.0,
   "minimap": { "show": "never" },
   "collaboration_panel": { "button": false },
-  "toolbar": {
-    "breadcrumbs": true,
-    "quick_actions": false,
-    "selections_menu": false
-  },
   "relative_line_numbers": "enabled",
   "restore_on_startup": "last_workspace",
   "show_edit_predictions": true,
@@ -39,6 +33,20 @@
   "tabs": {
     "file_icons": false,
     "activate_on_close": "neighbour"
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false
+  },
+  "title_bar": { "show_branch_name": false },
+  "status_bar": {
+    "cursor_position_button": false,
+    "line_endings_button": false
+  },
+  "tab_bar": {
+    "show": false,
+    "show_nav_history_buttons": false
   },
   "cursor_shape": "bar",
   "cursor_blink": false,
@@ -77,7 +85,6 @@
       "enabled": false
     }
   },
-  "tab_bar": { "show_nav_history_buttons": false },
   "languages": {
     "Python": {
       "language_servers": ["pyright", "ruff"],
@@ -89,15 +96,6 @@
           }
         }
       ]
-      // "formatter": {
-      //   "external": {
-      //     "command": "bash",
-      //     "arguments": [
-      //       "-c",
-      //       "ruff check --select=I --fix --stdin-filename {buffer_path} | ruff format --stdin-filename {buffer_path}"
-      //     ]
-      //   }
-      // }
     },
     "Elixir": {
       "show_edit_predictions": true,

@@ -5,6 +5,13 @@ return {
 		require('telescope').setup {
 			defaults = {
 				path_display = { "filename_first" },
+				file_ignore_patterns = {
+					"%.png$",
+					"%.svg$",
+					"%.jpg$",
+					"%.jpeg$",
+					"%.pdf"
+				}
 			},
 		}
 		local builtin = require('telescope.builtin')
