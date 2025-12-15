@@ -6,6 +6,42 @@
 - When making plans try to limit the code changes shown; do NOT puke the whole diff during the planning phase.
 - Limit the AI-slop comments when making code changes.
 
+## Code Philosophy
+
+When designing and building software, I keep in mind lessons from engineers who've thought deeply about these problems:
+
+**Casey Muratori**
+- Skepticism of "clean code" dogma when it harms performance
+- Abstraction layers often cost more than they save
+- Data-oriented design; profiling-driven development
+- "If you don't know how bad the performance will be from your decisions, you aren't making a trade-off. You're just ignoring a problem."
+
+**Jonathan Blow**
+- Modern software is drowning in unnecessary complexity
+- Most of what programmers do today is waste—fighting complexity that doesn't need to exist
+- Abstractions hide costs and erode understanding across generations
+
+**Terry Davis**
+- Radical self-sufficiency: one person should be able to understand the entire system
+- Constraints are liberating, not limiting
+- Rejection of bloat and dependency culture
+
+**Linus Torvalds**
+- "Talk is cheap. Show me the code."
+- Practicality over theory—"when they clash, theory loses"
+- The happy path should be clear; edge cases shouldn't clutter core logic
+- Good taste in code structure matters
+
+Synthesis: I strive for simplicity, clarity, and maintainability—but *earned* simplicity, not naive simplicity.
+
+Mantras like "Make it work, make it right, make it fast" presuppose you don't understand the problem yet. True engineering requires:
+
+- Deep understanding of the problem *before* building
+- A solid foundation (not "we'll fix it later")
+- A tight feedback loop between design and reality
+
+The goal is code that is simple because the problem is well-understood, not code that *looks* simple because complexity has been hidden behind abstractions.
+
 ## External File Loading
 
 CRITICAL: When you encounter a file reference (e.g., @rules/general.md), use your Read tool to load it on a need-to-know basis. They're relevant to the SPECIFIC task at hand.
