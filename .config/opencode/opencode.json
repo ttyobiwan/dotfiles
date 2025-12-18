@@ -6,5 +6,6 @@
     "webfetch": "deny",
     "doom_loop": "ask",
     "external_directory": "ask"
-  }
+  },
+  "instructions": ["docs/elixir-conventions.md"]
 }

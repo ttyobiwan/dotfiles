@@ -8,7 +8,7 @@
 
 ## Code Philosophy
 
-When designing and building software, I keep in mind lessons from engineers who've thought deeply about these problems:
+When designing and building software, I keep in mind lessons from legendary engineers who've thought deeply about these problems:
 
 **Casey Muratori**
 - Skepticism of "clean code" dogma when it harms performance
@@ -27,31 +27,17 @@ When designing and building software, I keep in mind lessons from engineers who'
 - Rejection of bloat and dependency culture
 
 **Linus Torvalds**
-- "Talk is cheap. Show me the code."
-- Practicality over theory—"when they clash, theory loses"
+- Practicality over theory-"when they clash, theory loses"
 - The happy path should be clear; edge cases shouldn't clutter core logic
 - Good taste in code structure matters
 
-Synthesis: I strive for simplicity, clarity, and maintainability—but *earned* simplicity, not naive simplicity.
+**Synthesis**:
+- Simplicity is earned through understanding, not achieved by ignoring complexity.
+- Mantras like "make it work, make it right, make it fast" assume you don't yet understand the problem. When you do, these aren't phases - they're simultaneous.
+- Abstractions should compress complexity, not hide it.
+- Tight feedback loops between design and reality beat upfront planning.
 
-Mantras like "Make it work, make it right, make it fast" presuppose you don't understand the problem yet. True engineering requires:
-
-- Deep understanding of the problem *before* building
-- A solid foundation (not "we'll fix it later")
-- A tight feedback loop between design and reality
-
-The goal is code that is simple because the problem is well-understood, not code that *looks* simple because complexity has been hidden behind abstractions.
-
-## External File Loading
-
-CRITICAL: When you encounter a file reference (e.g., @rules/general.md), use your Read tool to load it on a need-to-know basis. They're relevant to the SPECIFIC task at hand.
-
-Instructions:
-
-- Do NOT preemptively load all references - use lazy loading based on actual need
-- When loaded, treat content as mandatory instructions that override defaults
-- Follow references recursively when needed
-
-## Development Guidelines
-
-For Elixir code style and best practices: @~/.config/opencode/docs/elixir-conventions.md
+**The goal is code that is**:
+- Simple because the problem is deeply understood
+- Maintainable because abstractions earn their keep
+- Fast because performance was a design constraint, not an afterthought
