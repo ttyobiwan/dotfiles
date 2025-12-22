@@ -13,7 +13,7 @@ return {
 		vim.keymap.set("n", "<leader>ren", function() vim.lsp.buf.rename() end)
 
 		-- Lsp on attach
-		local navbuddy_skip = { 'ruff', 'GitHub Copilot' }
+		local navbuddy_skip = { 'ruff', 'GitHub Copilot', "copilot" }
 		local format_skip = { 'pyright' }
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)
@@ -57,7 +57,13 @@ return {
 		-- Python
 		vim.lsp.config('ruff', {})
 		vim.lsp.enable('ruff')
-		vim.lsp.config('pyright', {})
+		vim.lsp.config('pyright', {
+			cmd = { "pyright-langserver", "--stdio" },
+		})
 		vim.lsp.enable('pyright')
+
+		-- Go
+		vim.lsp.config('gopls', {})
+		vim.lsp.enable('gopls')
 	end
 }

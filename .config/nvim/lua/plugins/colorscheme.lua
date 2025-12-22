@@ -41,22 +41,25 @@ return {
 
 	},
 	{
-		"loctvl842/monokai-pro.nvim",
-		enabled = false,
-		config = function()
-			require("monokai-pro").setup()
-			-- "classic" | "machine" | "octagon" | "pro" | "ristretto" | "spectrum"
-			vim.cmd [[colorscheme monokai-pro-octagon]]
-		end
-	},
-	{
 		"navarasu/onedark.nvim",
-		enabled = true,
+		enabled = false,
 		config = function()
 			require('onedark').setup {
 				style = 'cool' -- dark, darker, cool, deep, warm, warmer
 			}
 			require('onedark').load()
 		end
+	},
+	{
+		'projekt0n/github-nvim-theme',
+		name = 'github-theme',
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require('github-theme').setup({
+			})
+
+			vim.cmd('colorscheme github_dark')
+		end,
 	}
 }
