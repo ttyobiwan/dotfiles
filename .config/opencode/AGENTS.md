@@ -18,7 +18,7 @@ When designing and building software, I keep in mind lessons from legendary engi
 
 **Jonathan Blow**
 - Modern software is drowning in unnecessary complexity
-- Most of what programmers do today is waste—fighting complexity that doesn't need to exist
+- Most of what programmers do today is waste-fighting complexity that doesn't need to exist
 - Abstractions hide costs and erode understanding across generations
 
 **Terry Davis**

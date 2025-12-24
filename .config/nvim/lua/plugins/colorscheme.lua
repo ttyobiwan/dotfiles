@@ -1,19 +1,5 @@
 return {
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		enabled = false,
-		config = function()
-			require("catppuccin").setup({
-				flavour = "latte", -- latte, frappe, macchiato, mocha
-				default_integrations = true,
-				no_italic = true,
-				no_bold = true,
-			})
-			vim.cmd([[colorscheme catppuccin]])
-		end
-	},
-	{
 		"rose-pine/neovim",
 		name = "rose-pine",
 		enabled = false,
@@ -28,17 +14,6 @@ return {
 			})
 			vim.cmd("colorscheme rose-pine")
 		end
-	},
-	{
-		"folke/tokyonight.nvim",
-		enabled = false,
-		config = function()
-			require("tokyonight").setup({
-				style = "storm", -- night, storm, day, moon
-			})
-			vim.cmd [[colorscheme tokyonight]]
-		end
-
 	},
 	{
 		"navarasu/onedark.nvim",
