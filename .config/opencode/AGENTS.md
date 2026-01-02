@@ -41,3 +41,49 @@ When designing and building software, I keep in mind lessons from legendary engi
 - Simple because the problem is deeply understood
 - Maintainable because abstractions earn their keep
 - Fast because performance was a design constraint, not an afterthought
+
+## Code Style
+
+- Prefer early returns over deep nesting
+
+```
+# Bad:
+if x:
+    # Some logic
+    if y:
+        # Some logic
+        if z:
+            # Some logic
+            return True
+return False
+
+# Good:
+if not x:
+    return False
+
+if not y:
+    return False
+
+if not z:
+    return False
+
+return True
+
+# Equally good:
+if not x:
+    return validate_y_and_z(y, z)
+```
+
+This is particularly important when there is logic between conditionals, that becomes unreadable because of nesting.
+
+- Avoid wrapping whole function body in conditionals
+
+```
+def some_function(a, b):
+    if some_condition:
+        return a * 2
+    else:
+        return b * 2
+```
+
+It adds unnecessary nesting and makes the intend less clear. Instead, you can either add the conditional when calling the function, or add separate functions.
