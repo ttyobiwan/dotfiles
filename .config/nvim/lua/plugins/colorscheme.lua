@@ -1,7 +1,7 @@
 return {
 	{
 		"navarasu/onedark.nvim",
-		enabled = true,
+		enabled = false,
 		config = function()
 			require('onedark').setup {
 				style = 'darker' -- dark, darker, cool, deep, warm, warmer
@@ -12,9 +12,6 @@ return {
 	{
 		'projekt0n/github-nvim-theme',
 		name = 'github-theme',
-		enabled = false,
-		lazy = false,
-		priority = 1000,
 		config = function()
 			require('github-theme').setup({})
 			vim.cmd('colorscheme github_dark')
