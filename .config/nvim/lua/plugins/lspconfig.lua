@@ -50,7 +50,15 @@ return {
 
 		-- Elixir
 		vim.lsp.config('elixirls', {
-			cmd = { "/Users/Piotr/Library/Application Support/Zed/extensions/work/elixir/elixir-ls-v0.30.0/language_server.sh" },
+			cmd = { vim.fn.expand("~/.local/share/mise/installs/elixir-ls/0.30.0/language_server.sh") },
+			settings = {
+				elixirLS = {
+					dialyzerEnabled = false,
+					fetchDeps = false,
+					suggestSpecs = false,
+					enableTestLenses = false,
+				},
+			},
 		})
 		vim.lsp.enable('elixirls')
 
