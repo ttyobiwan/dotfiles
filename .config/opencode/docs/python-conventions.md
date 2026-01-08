@@ -96,3 +96,17 @@ logger.info(
 )
 ```
 
+## Testing
+
+- Tests should be classes, with methods representing specific testing scenarion (similar to ExUnit conventions)
+
+```python
+def method_to_test():
+    if something:
+        return True
+    return False
+
+class TestMethodToTest:
+    def test_returns_true_if_something(): ...
+    def test_returns_false_if_not_something(): ...
+```

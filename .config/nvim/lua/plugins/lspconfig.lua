@@ -14,7 +14,9 @@ return {
 
 		-- Lsp on attach
 		local navbuddy_skip = { 'ruff', 'GitHub Copilot', "copilot" }
-		local format_skip = { 'pyright' }
+		local format_skip = { 'pyright', 'copilot', 'GitHub Copilot' }
+		local format_group = vim.api.nvim_create_augroup('LspFormat', { clear = true })
+
 		vim.api.nvim_create_autocmd('LspAttach', {
 			callback = function(args)
 				local c = vim.lsp.get_client_by_id(args.data.client_id)
@@ -24,8 +26,14 @@ return {
 					navbuddy.attach(c, args.buf)
 				end
 
+				-- pyright handles hover
+				if c.name == 'ruff' then
+					c.server_capabilities.hoverProvider = false
+				end
+
 				if not vim.tbl_contains(format_skip, c.name) then
 					vim.api.nvim_create_autocmd('BufWritePre', {
+						group = format_group,
 						buffer = args.buf,
 						callback = function()
 							vim.lsp.buf.format({ bufnr = args.buf, id = c.id })
@@ -65,8 +73,22 @@ return {
 		-- Python
 		vim.lsp.config('ruff', {})
 		vim.lsp.enable('ruff')
+		-- pyright for type checking only
 		vim.lsp.config('pyright', {
-			cmd = { "pyright-langserver", "--stdio" },
+			settings = {
+				pyright = {
+					disableOrganizeImports = true,
+				},
+				python = {
+					analysis = {
+						diagnosticSeverityOverrides = {
+							-- ruff handles below
+							reportUnusedImport = "none",
+							reportUnusedVariable = "none",
+						},
+					},
+				},
+			},
 		})
 		vim.lsp.enable('pyright')
 
