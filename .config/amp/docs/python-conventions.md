@@ -1,3 +1,8 @@
+---
+globs:
+  - '**/*.py'
+---
+
 Follow these Python conventions.
 
 ## General

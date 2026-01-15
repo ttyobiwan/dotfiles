@@ -6,6 +6,6 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<leader>nav", ":Navbuddy<cr>", { desc = "Open navbuddy" })
+		vim.keymap.set("n", "<leader>nn", ":Navbuddy<cr>", { desc = "Open navbuddy" })
 	end
 }

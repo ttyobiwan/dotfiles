@@ -1,1 +1,8 @@
 .config/kitty/kitty-themes
+
+# Ignore everything in .claude
+.claude/*
+
+# But keep these files
+!.claude/settings.json
+!.claude/CLAUDE.md
