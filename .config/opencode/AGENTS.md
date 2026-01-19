@@ -1,11 +1,14 @@
 ## General Guidelines
 
-- When naming session, use max 3-5 words.
 - In all interactions be extremely concise and sacrifice grammar for the sake of concision.
 - When I'm asking questions, or having doubts, I expect genuine, precise, and relevant answer, not that I'm "absolutely right". I might be right, but I might as have some wrong assumptions. Our task is to succeed, not to comfort me.
-- At the end of each plan, give me a list of unresolved questions to answer, if any. Make the questions extremely concise. Sacrifice grammar for the sake of concision.
+- Limit the AI-slop comments to absolute minimum; code should be self-descriptive, no need to add `# this thing does x` above `def function_that_does_x`.
+
+## Plan Mode
+
+- Make the plan extremely concise. Sacrifice grammar for the sake of concision.
+- At the end of each plan, give me a list of unresolved questions to answer, if any.
 - When making plans try to limit the code changes shown; do NOT puke the whole diff during the planning phase.
-- Limit the AI-slop comments to absolutel minimum; code should be self-descriptive, no need to add `# this thing does x` above `def function_that_does_x`.
 
 ## Code Philosophy
 
@@ -89,21 +92,47 @@ def some_function(a, b):
 
 It adds unnecessary nesting and makes the intend less clear. Instead, you can either add the conditional when calling the function, or add separate functions.
 
-## Language specific rules
+## Language Specific Rules
 
 ### Elixir
 
 Follow these Elixir conventions.
 
-#### General
+#### General Elixir Rules
 
 - When writing `@doc` and `@moduledoc`, don't add `Parameters` and `Returns` sections. Only add `Example` section. Examples should be safe to copy and paste, and cannot contain truncated code.
 - Don't add specs or docs to private functions.
-- When adding code blocks in docstrings, do NOT add `...>` or `iex>` as continuation - just use proper indentation.
 - Add imports and aliases on the module level, not on function level.
 - Avoid using `only` in imports. Something like `import Ecto.Query, only: [from: 2]` is rarely necessary.
 
-#### Logging
+#### Testing With ExUnit
+
+- `describe` should point to specific function, while `test` to specific scenario
+
+```elixir
+# Good
+describe "validate/1" do
+  test "returns error if x is invalid" do
+    # ...
+  end
+end
+# Bad
+describe "Module validation" do
+  test "validates x and return error if its invalid" do
+    # ...
+  end
+end
+# Also bad
+describe "validate/1 for x" do
+  test "returns error if x is invalid" do
+    # ...
+  end
+end
+```
+
+`describe` should never be some generic phrase dettached from the actual module.
+
+#### Logging In Elixir
 
 ```elixir
 # Implicit keyword list (preferred for readability)
@@ -200,7 +229,7 @@ mix phx.gen.embedded UserProfile name:string bio:text
 
 Follow these Python conventions.
 
-#### General
+#### General Python Rules
 
 - Don't write `dict[str, Any]` type annonations because it's the same as `dict`.
 - When writing type annonations, don't import `List`, `Dict`, etc. from `typing` because you can just use `list`, `dict`, etc.
@@ -219,7 +248,7 @@ raise NotFoundError(msg)
 
 - Avoid `try` blocks with `except Object.DoesNotExist`; they add nesting for zero value. Instead you can do `.filter(...).first()`.
 
-#### Logging
+#### Logging In Python
 
 ```python
 import structlog
@@ -296,7 +325,7 @@ logger.info(
 )
 ```
 
-#### Testing
+#### pytest
 
 - Tests should be classes, with methods representing specific testing scenarion (similar to ExUnit conventions)
 

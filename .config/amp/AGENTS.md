@@ -2,9 +2,13 @@
 
 - In all interactions be extremely concise and sacrifice grammar for the sake of concision.
 - When I'm asking questions, or having doubts, I expect genuine, precise, and relevant answer, not that I'm "absolutely right". I might be right, but I might as have some wrong assumptions. Our task is to succeed, not to comfort me.
-- At the end of each plan, give me a list of unresolved questions to answer, if any. Make the questions extremely concise. Sacrifice grammar for the sake of concision.
+- Limit the AI-slop comments to absolute minimum; code should be self-descriptive, no need to add `# this thing does x` above `def function_that_does_x`.
+
+## Plan Mode
+
+- Make the plan extremely concise. Sacrifice grammar for the sake of concision.
+- At the end of each plan, give me a list of unresolved questions to answer, if any.
 - When making plans try to limit the code changes shown; do NOT puke the whole diff during the planning phase.
-- Limit the AI-slop comments when making code changes.
 
 ## Code Philosophy
 
@@ -87,3 +91,251 @@ def some_function(a, b):
 ```
 
 It adds unnecessary nesting and makes the intend less clear. Instead, you can either add the conditional when calling the function, or add separate functions.
+
+## Language Specific Rules
+
+### Elixir
+
+Follow these Elixir conventions.
+
+#### General Elixir Rules
+
+- When writing `@doc` and `@moduledoc`, don't add `Parameters` and `Returns` sections. Only add `Example` section. Examples should be safe to copy and paste, and cannot contain truncated code.
+- Don't add specs or docs to private functions.
+- Add imports and aliases on the module level, not on function level.
+- Avoid using `only` in imports. Something like `import Ecto.Query, only: [from: 2]` is rarely necessary.
+
+#### Testing With ExUnit
+
+- `describe` should point to specific function, while `test` to specific scenario
+
+```elixir
+# Good
+describe "validate/1" do
+  test "returns error if x is invalid" do
+    # ...
+  end
+end
+# Bad
+describe "Module validation" do
+  test "validates x and return error if its invalid" do
+    # ...
+  end
+end
+# Also bad
+describe "validate/1 for x" do
+  test "returns error if x is invalid" do
+    # ...
+  end
+end
+```
+
+`describe` should never be some generic phrase dettached from the actual module.
+
+#### Logging In Elixir
+
+```elixir
+# Implicit keyword list (preferred for readability)
+Logger.info("User logged in", user_id: 123, ip: "192.168.1.1")
+
+# Explicit keyword list (also valid)
+Logger.info("User logged in", [user_id: 123, ip: "192.168.1.1"])
+
+# Multi-line for complex metadata
+Logger.error("Payment failed", [
+  user_id: user.id,
+  order_id: order.id,
+  amount: payment.amount,
+  reason: error_reason
+])
+```
+
+```elixir
+# Good: Identifiers in metadata, details in message
+Logger.info("Payment processed for $#{amount} via #{method}", [
+  user_id: user.id,
+  order_id: order.id
+])
+
+Logger.error("API request failed with status #{status}: #{error_message}", [
+  conversation_id: context.conversation_id,
+  user_id: user.id
+])
+
+Logger.debug("Database query completed in #{duration}ms returning #{count} records", [
+  table: :users,
+  user_id: current_user.id
+])
+```
+
+```elixir
+# API operations
+Logger.info("API #{method} #{path} completed with status #{status} in #{duration}ms", [
+  user_id: current_user.id,
+  request_id: request_id,
+  method: method,
+  endpoint: path
+])
+
+# Database operations  
+Logger.debug("#{operation} query on #{table} completed in #{duration}ms returning #{count} records", [
+  table: table,
+  operation: operation,
+  user_id: current_user.id
+])
+
+# Error handling
+Logger.error("#{service} service unavailable: #{inspect(error)}", [
+  service: service,
+  user_id: user.id,
+  request_id: request_id,
+  retry_count: retry_count
+])
+
+# Business logic
+Logger.info("Order #{order_id} processed successfully for $#{total} via #{payment_method}", [
+  order_id: order.id,
+  user_id: order.user_id,
+  request_id: request_id
+])
+```
+
+#### Phoenix
+
+- Always use Phoenix and Elixir generators before manually creating code. Generators ensure consistency, follow best practices, and maintain proper project structure.
+
+```bash
+# Create database migrations
+mix ecto.gen.migration create_users_table
+
+# Generate schema with migration
+mix phx.gen.schema Accounts.User users email:string name:string
+
+# Generate embedded schemas
+mix phx.gen.embedded UserProfile name:string bio:text
+```
+
+- Generated migration can use binary_id for schema's primary key and its references with option `--binary-id`.
+
+#### Oban
+
+- Jobs should just perform an action(s), and maybe do some results gathering/aggregation. They should NOT hold any feature-specific logic.
+
+#### Ecto
+
+- `Repo.delete_all` can return a result as second element if select is supplied in the delete query.
+
+### Python
+
+Follow these Python conventions.
+
+#### General Python Rules
+
+- Don't write `dict[str, Any]` type annonations because it's the same as `dict`.
+- When writing type annonations, don't import `List`, `Dict`, etc. from `typing` because you can just use `list`, `dict`, etc.
+
+#### Exceptions
+
+- Exceptions messages should never contain dynamic data: `SomeError(f"Object {object_id} not found")` will cause problems for services like Sentry
+- Exception messages should be declared before raising:
+
+```python
+msg = "Object not found"
+raise NotFoundError(msg)
+```
+
+#### Django
+
+- Avoid `try` blocks with `except Object.DoesNotExist`; they add nesting for zero value. Instead you can do `.filter(...).first()`.
+
+#### Logging In Python
+
+```python
+import structlog
+
+logger = structlog.get_logger(__name__)
+
+# Basic structured logging
+logger.info("User logged in", user_id=123, ip="192.168.1.1")
+
+# Multi-line for complex metadata
+logger.error(
+    "Payment failed",
+    user_id=user.id,
+    order_id=order.id,
+    amount=payment.amount,
+    reason=error_reason,
+)
+```
+
+```python
+# Good: Identifiers in metadata, details in message
+logger.info(
+    f"Payment processed for ${amount} via {method}",
+    user_id=user.id,
+    order_id=order.id,
+)
+
+logger.error(
+    f"API request failed with status {status}: {error_message}",
+    conversation_id=context.conversation_id,
+    user_id=user.id,
+)
+
+logger.debug(
+    f"Database query completed in {duration}ms returning {count} records",
+    table="users",
+    user_id=current_user.id,
+)
+```
+
+```python
+# API operations
+logger.info(
+    f"API {method} {path} completed with status {status} in {duration}ms",
+    user_id=current_user.id,
+    request_id=request_id,
+    method=method,
+    endpoint=path,
+)
+
+# Database operations
+logger.debug(
+    f"{operation} query on {table} completed in {duration}ms returning {count} records",
+    table=table,
+    operation=operation,
+    user_id=current_user.id,
+)
+
+# Error handling
+logger.error(
+    f"{service} service unavailable: {error!r}",
+    service=service,
+    user_id=user.id,
+    request_id=request_id,
+    retry_count=retry_count,
+)
+
+# Business logic
+logger.info(
+    f"Order {order_id} processed successfully for ${total} via {payment_method}",
+    order_id=order.id,
+    user_id=order.user_id,
+    request_id=request_id,
+)
+```
+
+#### pytest
+
+- Tests should be classes, with methods representing specific testing scenarion (similar to ExUnit conventions)
+
+```python
+def method_to_test():
+    if something:
+        return True
+    return False
+
+class TestMethodToTest:
+    def test_returns_true_if_something(): ...
+    def test_returns_false_if_not_something(): ...
+```
