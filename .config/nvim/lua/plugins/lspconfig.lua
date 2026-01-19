@@ -73,24 +73,14 @@ return {
 		-- Python
 		vim.lsp.config('ruff', {})
 		vim.lsp.enable('ruff')
-		-- pyright for type checking only
-		vim.lsp.config('pyright', {
+
+		vim.lsp.config('ty', {
+			cmd = { 'uvx', 'ty', 'server' },
 			settings = {
-				pyright = {
-					disableOrganizeImports = true,
-				},
-				python = {
-					analysis = {
-						diagnosticSeverityOverrides = {
-							-- ruff handles below
-							reportUnusedImport = "none",
-							reportUnusedVariable = "none",
-						},
-					},
-				},
-			},
+				ty = {}
+			}
 		})
-		vim.lsp.enable('pyright')
+		vim.lsp.enable('ty')
 
 		-- Go
 		vim.lsp.config('gopls', {})
