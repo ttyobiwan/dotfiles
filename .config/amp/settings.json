@@ -1,0 +1,6 @@
+{
+	"amp.permissions": [
+	  { "tool": "create_file", "action": "ask"},
+	  { "tool": "edit_file", "action": "ask"}
+	]
+}

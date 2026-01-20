@@ -59,6 +59,10 @@ return {
 		-- Elixir
 		vim.lsp.config('elixirls', {
 			cmd = { vim.fn.expand("~/.local/share/mise/installs/elixir-ls/0.30.0/language_server.sh") },
+			cmd_env = {
+				ASDF_DIR = "",
+				ASDF_DATA_DIR = "",
+			},
 			settings = {
 				elixirLS = {
 					dialyzerEnabled = false,

@@ -6,3 +6,4 @@
 # But keep these files
 !.claude/settings.json
 !.claude/CLAUDE.md
+!.claude/commands/
