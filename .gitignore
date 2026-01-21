@@ -1,4 +1,5 @@
 .config/kitty/kitty-themes
+.config/fish/fish_variables
 
 # Ignore everything in claude package
 claude/.claude/*

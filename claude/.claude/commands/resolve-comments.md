@@ -1,7 +1,3 @@
----
-description: Resolve pull request comments
-agent: build
----
 Look at PR $1 using the GitHub CLI. Your job is to triage and resolve reviewer comments *locally* (no replies on GitHub, no extra branches).
 
 Goal:
